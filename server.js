@@ -14,7 +14,7 @@ function getUsers(){
           ]
           return users;
     } else {
-        throw new Error ("Can't get users...")
+        process.exit(1); //https://nodejs.org/api/process.html#process_exit_codes
     }   
 }
 
