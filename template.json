@@ -35,10 +35,7 @@
 			],
 			"properties": {
 				"siteConfig": "[variables('siteConfig')]",
-				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-                "cors": {
-                    "allowedOrigins": ["*"]
-                }
+				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
 			},
 			"resources": [
 				{
@@ -53,7 +50,22 @@
 						"branch": "[variables('branch')]",
 						"IsManualIntegration": true
 					}
-				}
+				},
+                {
+                    "apiVersion": "2020-06-01",
+                    "name": "appsettings",
+                    "type": "config",
+                    "dependsOn": [
+                            "[resourceId('Microsoft.Web/Sites', variables('siteName'))]"
+                        ],
+                    "properties":{
+                          "cors": {
+                            "allowedOrigins": [
+                            "*"
+                            ]
+                        }
+                    }
+                }
 			]
 		}
 	]
