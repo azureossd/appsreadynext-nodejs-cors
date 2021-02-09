@@ -14,7 +14,7 @@ function getUsers(){
           ]
           return users;
     } else {
-        process.exit(1);
+        throw new Error ("Can't get users...")
     }   
 }
 
